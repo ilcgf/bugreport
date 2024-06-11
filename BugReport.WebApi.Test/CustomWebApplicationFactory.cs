@@ -38,7 +38,7 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
             var provider = services.BuildServiceProvider();
 
-            //_connection = provider.GetRequiredService<DbConnection>();
+            _connection = provider.GetRequiredService<DbConnection>();
             PopulateDatabase(provider);
         });
     }
@@ -50,14 +50,14 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        User[] users =
-        [
-            new(){Id=1,Name="Anton"},
-            new(){Id=2,Name="Bob"},
-            new(){Id=3,Name="Charlie"},
-            new(){Id=4,Name="David"},
-        ];
-        context.Users.AddRange(users);
-        context.SaveChanges();
+        //User[] users =
+        //[
+        //    new(){Id=1,Name="Anton"},
+        //    new(){Id=2,Name="Bob"},
+        //    new(){Id=3,Name="Charlie"},
+        //    new(){Id=4,Name="David"},
+        //];
+        //context.Users.AddRange(users);
+        //context.SaveChanges();
     }
 }
