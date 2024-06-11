@@ -47,7 +47,7 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
     {
         using var scope = provider.CreateScope();
         using var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        context.Database.EnsureDeleted();
+        //context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
         //User[] users =
