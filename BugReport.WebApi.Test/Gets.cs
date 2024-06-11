@@ -6,18 +6,11 @@ namespace BugReport.WebApi.Test;
 
 public sealed class Gets : BaseTest
 {
-    private readonly ILogger<Gets> _logger;
-
-    public Gets(ILogger<Gets> logger)
-    {
-        _logger = logger;
-    }
-
 
     [Fact]
     public async Task Should_return_ArrayOfUsers()
     {
-        _logger.LogInformation("starting");
+
         var content = await _http.GetFromJsonAsync<User[]>("users");
 
         Assert.Equal(4, content!.Length);

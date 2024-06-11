@@ -28,6 +28,28 @@ namespace BugReport.WebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Anton"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Bob"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Charlie"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "David"
+                        });
                 });
 #pragma warning restore 612, 618
         }

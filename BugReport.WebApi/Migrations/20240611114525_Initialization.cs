@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace BugReport.WebApi.Migrations
 {
     /// <inheritdoc />
@@ -21,6 +23,17 @@ namespace BugReport.WebApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Anton" },
+                    { 2, "Bob" },
+                    { 3, "Charlie" },
+                    { 4, "David" }
                 });
         }
 

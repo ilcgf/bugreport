@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BugReport.WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240611093815_Initialization")]
+    [Migration("20240611114525_Initialization")]
     partial class Initialization
     {
         /// <inheritdoc />
@@ -31,6 +31,28 @@ namespace BugReport.WebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Anton"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Bob"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Charlie"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "David"
+                        });
                 });
 #pragma warning restore 612, 618
         }
