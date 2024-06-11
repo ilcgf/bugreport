@@ -11,7 +11,7 @@ namespace BugReport.WebApi.Test;
 
 public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    private DbConnection _connection = null!;
+    private DbConnection _connection = null!;// B
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         base.ConfigureWebHost(builder);
@@ -31,14 +31,14 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
             services.AddDbContext<AppDbContext>((provider, options) =>
             {
-                options.UseSqlite(provider.GetRequiredService<DbConnection>());
-                //options.UseSqlite(_connection);
+                options.UseSqlite(provider.GetRequiredService<DbConnection>());// A
+                //options.UseSqlite(_connection); // B
             });
 
 
             var provider = services.BuildServiceProvider();
 
-            _connection = provider.GetRequiredService<DbConnection>();
+            _connection = provider.GetRequiredService<DbConnection>(); // B
             PopulateDatabase(provider);
         });
     }
