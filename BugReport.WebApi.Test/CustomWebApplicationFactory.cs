@@ -27,20 +27,18 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 var connection = new SqliteConnection("DataSource=:memory:");
                 connection.Open();
                 return connection;
-            });
-
-            
+            });            
 
             services.AddDbContext<AppDbContext>((provider, options) =>
             {
-                //options.UseSqlite(provider.GetRequiredService<DbConnection>());
-                options.UseSqlite(_connection);
+                options.UseSqlite(provider.GetRequiredService<DbConnection>());
+                //options.UseSqlite(_connection);
             });
 
 
             var provider = services.BuildServiceProvider();
 
-            _connection = provider.GetRequiredService<DbConnection>();
+            //_connection = provider.GetRequiredService<DbConnection>();
             PopulateDatabase(provider);
         });
     }
@@ -49,6 +47,7 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
     {
         using var scope = provider.CreateScope();
         using var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
         User[] users =
